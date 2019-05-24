@@ -1,0 +1,14 @@
+{% load static %}
+
+<div class="info-box parse-details-box">
+  <!-- Apply any bg-* class to to the icon to color it -->
+<!--  <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>-->
+  <span class="info-box-icon bg-red"><img src='{% static "img/ramnode.png" %}' alt="" width="90" height="90"></span>
+
+  <div class="info-box-content">
+    <span class="info-box-text">RamNode - {{ server }}</span>
+    <span class="info-box-number">Опалчено до {{ date }}</span>
+    <span class="info-box-number">Сумма ${{ cost }}</span>
+  </div>
+  <!-- /.info-box-content -->
+</div>

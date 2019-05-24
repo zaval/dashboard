@@ -1,0 +1,15 @@
+certifi==2019.3.9
+chardet==3.0.4
+Django==2.2.1
+idna==2.8
+psycopg2>=2.7,<3.0
+PySocks==1.7.0
+pytz==2019.1
+requests==2.22.0
+sqlparse==0.3.0
+urllib3==1.25.2
+django-admin-hstore-widget==1.0.1
+django-adminlte2>=0.4.1
+django_cron>=0.5.1
+google-api-python-client>=1.7.8
+oauth2client>=4.1.3
