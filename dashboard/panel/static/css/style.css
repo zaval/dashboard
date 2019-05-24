@@ -10,6 +10,13 @@
 }
 .parse-content {
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     flex-wrap: wrap;
+}
+.parse-details-box {
+    margin: 1rem;
+}
+
+.red-text {
+    color: darkred;
 }

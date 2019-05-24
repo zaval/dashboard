@@ -41,6 +41,7 @@ class RamNode:
                 'server': data['server'],
                 'date': resp[1],
                 'cost': resp[0],
+                # 'alert': (datetime.datetime.strptime(resp[1], '%Y-%m-%d') - datetime.datetime.now()).days < 15
             }
         else:
             print('no data')
