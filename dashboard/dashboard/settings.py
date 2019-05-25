@@ -138,5 +138,10 @@ CRON_CLASSES = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-if os.path.exists(os.path.join(BASE_DIR, "server_settings.py")):
-    import server_settings
+# if os.path.exists(os.path.join(BASE_DIR, "server_settings.py")):
+#     import server_settings
+
+try:
+    from server_settings import *
+except:
+    pass

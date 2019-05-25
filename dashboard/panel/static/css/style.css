@@ -20,3 +20,17 @@
 .red-text {
     color: darkred;
 }
+
+.btn-social-icon {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    padding-left: 44px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 34px;
+    width: 34px;
+    padding: 0;
+}

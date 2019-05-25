@@ -1,10 +1,11 @@
 {% load static %}
+{% load panel_utils %}
 
 <div class="info-box parse-details-box">
 
   <span class="info-box-icon"><img src='{% static "img/keycdn.png" %}' alt="" width="90" height="90"></span>
 
-  <div class="info-box-content">
+  <div class="info-box-content {% if cost|to_float < 5.0 %}red-text{% endif %}">
     <span class="info-box-text">KeyCDN - {{ name }}</span>
     <span class="info-box-number">Сумма ${{ cost }}</span>
   </div>

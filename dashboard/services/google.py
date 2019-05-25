@@ -11,7 +11,7 @@ class Google_AdSense():
         service = build('adsense', 'v1.4', http=creds.authorize(Http()))
         accounts = service.accounts().list().execute()
         account_id = accounts['items'][0]['id']
-        res = service.accounts().reports().generate(startDate='today', endDate='today', dimension=['DATE'], metric=['EARNINGS'], accountId=account_id).execute()
+        res = service.accounts().reports().generate(startDate='today', endDate='today', dimension=['DATE'], metric=['EARNINGS'], accountId=account_id, useTimezoneReporting=True).execute()
         print(res)
         return {
             'cost': res['totals'][1]
