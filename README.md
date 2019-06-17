@@ -1,2 +1,7 @@
 # dashboard
-zdashboard.ml
+Realtime account details montor for services:
+- Google Adsense
+- RamNode
+- KeyCDN
+
+[zdashboard.ml](http://zdashboard.ml)
