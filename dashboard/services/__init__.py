@@ -11,6 +11,7 @@ serviceEnums = (
     ("AS", "Google AdSense"),
     ("KC", "KeyCDN"),
     ("RN", "RamNode"),
+    ("HS", "Hostens"),
     # ("DN", "DNSMadeEasy"),
 )
 

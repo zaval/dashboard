@@ -1,0 +1,17 @@
+{% load static %}
+{% load panel_utils %}
+
+<div class="info-box parse-details-box">
+  <!-- Apply any bg-* class to to the icon to color it -->
+<!--  <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>-->
+  <span class="info-box-icon bg-red"><img src='{% static "img/hostens.png" %}' alt="" width="90" height="90"></span>
+
+
+  <div class="info-box-content {% if date|diff_days:'%Y-%m-%d' < 5 %}red-text{% endif %}">
+    <span class="info-box-text">Hostens - {{ server }}</span>
+<!--    <span class="info-box-number {{ class }}">Опалчено до {{ date }}</span>-->
+    <span class="info-box-number">Опалчено до {{ date }}</span>
+    <span class="info-box-number">Сумма ${{ cost }}</span>
+  </div>
+  <!-- /.info-box-content -->
+</div>

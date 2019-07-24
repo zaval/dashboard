@@ -135,6 +135,7 @@ CRON_CLASSES = [
     'panel.cron.RamnodeCron',
     'panel.cron.KeyCDNCron',
     'panel.cron.Google_AdSenseCron',
+    'panel.cron.HostensCron',
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
