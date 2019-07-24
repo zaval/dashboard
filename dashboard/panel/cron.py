@@ -37,7 +37,7 @@ class KeyCDNCron(CronJobBase):
 
 
 class Google_AdSenseCron(CronJobBase):
-    RUN_EVERY_MINS = 1
+    RUN_EVERY_MINS = 10
     code = 'cron.adsense'
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)

@@ -32,7 +32,7 @@ class Hostens:
                 return {}
 
         try:
-            resp = requests.get(f"https://billing.hostens.com/api/service/{service_id}", auth=HTTPBasicAuth(login, password)).json()
+            resp = requests.get("https://billing.hostens.com/api/service/{service_id}".format(**locals()), auth=HTTPBasicAuth(login, password)).json()
             return {
                 'server': server_name,
                 'date': resp['service']['next_due'],
