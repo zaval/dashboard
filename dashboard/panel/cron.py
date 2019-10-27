@@ -78,5 +78,9 @@ class FastvpsCron(CronJobBase):
         for task in tasks:
             rn = services.ParseService("FV")
             data = rn.start(task.login, task.password, task.extra_data)
+            token = data.pop('token')
+            extra_data = task.extra_data
+            extra_data['token'] = token
+            task.extra_data = extra_data
             task.result = data
             task.save()

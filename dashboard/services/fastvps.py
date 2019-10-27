@@ -13,10 +13,26 @@ class FastVPS(BaseService):
         ip = data['ip']
 
         try:
+
+            resp = requests.post(
+                'https://bill2fast.com/api/v1/token/refresh',
+                data='{"refresh_token":"%s"}' % token,
+                headers={
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json;charset=utf-8',
+                }
+            ).json()
+
+            print(resp)
+
+            bearer = resp['token']
+            refresh_token = resp['refresh_token']
+
             resp = requests.get(
                 'https://bill2fast.com/api/v1/services?category=vps&direction=desc&include=product,options,node,billing,ips,invoices,estimate&limit=20&order=id&page=1',
                 headers={
-                    'Authorization': 'Bearer {}'.format(token)
+                    'Authorization': 'Bearer {}'.format(bearer)
                 }
             ).json()
             for server in resp['data']:
@@ -25,6 +41,7 @@ class FastVPS(BaseService):
                         'server': ip,
                         'date': server['billing']['due_at'].split('T')[0],
                         'cost': server['billing']['amount'],
+                        'token': refresh_token,
                     }
                     return result
         except Exception as e:
