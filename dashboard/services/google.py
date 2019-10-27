@@ -3,8 +3,10 @@ from httplib2 import Http
 # from oauth2client import client, tools
 from oauth2client import client
 
+from services.base import BaseService
 
-class Google_AdSense():
+
+class Google_AdSense(BaseService):
 
     def start(self, login, password, data):
         creds = client.Credentials.new_from_json(data['auth'])

@@ -2,8 +2,10 @@ import re
 import json
 import requests
 
+from services.base import BaseService
 
-class KeyCDN:
+
+class KeyCDN(BaseService):
 
     def __init__(self):
         self.http = requests.Session()

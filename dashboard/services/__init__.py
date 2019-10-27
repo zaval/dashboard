@@ -12,6 +12,7 @@ serviceEnums = (
     ("KC", "KeyCDN"),
     ("RN", "RamNode"),
     ("HS", "Hostens"),
+    ("FV", "FastVPS"),
     # ("DN", "DNSMadeEasy"),
 )
 

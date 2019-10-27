@@ -64,3 +64,19 @@ class HostensCron(CronJobBase):
             data = rn.start(task.login, task.password, task.extra_data)
             task.result = data
             task.save()
+
+
+class FastvpsCron(CronJobBase):
+
+    RUN_EVERY_MINS = 60*24
+    code = 'cron.fastvps'
+
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+
+    def do(self):
+        tasks = ParseTask.objects.filter(service='FV')
+        for task in tasks:
+            rn = services.ParseService("FV")
+            data = rn.start(task.login, task.password, task.extra_data)
+            task.result = data
+            task.save()

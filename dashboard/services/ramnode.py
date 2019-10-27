@@ -2,8 +2,10 @@ import datetime
 import re
 import requests
 
+from services.base import BaseService
 
-class RamNode:
+
+class RamNode(BaseService):
 
     def __init__(self):
         self.http = requests.Session()

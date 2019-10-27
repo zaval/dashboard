@@ -1,8 +1,10 @@
 import requests
 from requests.auth import HTTPBasicAuth
 
+from services.base import BaseService
 
-class Hostens:
+
+class Hostens(BaseService):
 
     def start(self, login, password, data):
 
@@ -32,12 +34,24 @@ class Hostens:
                 return {}
 
         try:
-            resp = requests.get("https://billing.hostens.com/api/service/{service_id}".format(**locals()), auth=HTTPBasicAuth(login, password)).json()
-            return {
+            resp = requests.get(
+                "https://billing.hostens.com/api/service/{service_id}".format(**locals()),
+                auth=HTTPBasicAuth(login, password)
+            ).json()
+            due_date = resp['service']['next_due']
+            cost = resp['service']['total']
+            resp = requests.get(
+                "https://billing.hostens.com/api/invoices",
+                auth=HTTPBasicAuth(login, password)
+            ).json()
+            if resp.get('invoices', [{}])[-1].get('status', 'Paid') != 'Paid':
+                due_date = resp['invoices'][-1]['paybefore']
+            result = {
                 'server': server_name,
-                'date': resp['service']['next_due'],
-                'cost': resp['service']['total'],
+                'date': due_date,
+                'cost': cost,
             }
+            return result
         except Exception as e:
             print(e)
             return {}
