@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 # Create your views here.
+from dashboard import settings
 from panel.models import ParseTask
 
 
@@ -25,7 +26,9 @@ def index(request):
         rendered = render_to_string('panel/{}.html'.format(task.service), data)
         tasks.append(rendered)
 
-    return render(request, 'panel/index.html', {'tasks': tasks})
+    webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
+    vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
+    return render(request, 'panel/index.html', {'tasks': tasks, 'vapid_key': vapid_key})
 
 
 def login_view(request):

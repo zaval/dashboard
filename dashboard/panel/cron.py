@@ -1,4 +1,8 @@
+from datetime import datetime
+
 from django_cron import CronJobBase, Schedule
+from webpush import send_user_notification
+
 import services
 from panel.models import *
 
@@ -11,14 +15,28 @@ class RamnodeCron(CronJobBase):
 
     def do(self):
         tasks = ParseTask.objects.filter(service='RN')
-        # print(tasks)
+        users = []
+        now = datetime.now()
         for task in tasks:
 
             rn = services.ParseService("RN")
             data = rn.start(task.login, task.password, task.extra_data)
-            # print(data)
             task.result = data
             task.save()
+            d = datetime.strptime(data['date'], '%Y-%m-%d')
+            if (d - now).days < 5:
+                users.append(task.user)
+
+        for user in users:
+
+            send_user_notification(
+                user=user,
+                payload={
+                    'head': 'Сервис требует внимания',
+                    'body': 'На сервисе Ramnode заканчиваются деньги!'
+                },
+                ttl=604800
+            )
 
 
 class KeyCDNCron(CronJobBase):
@@ -59,11 +77,26 @@ class HostensCron(CronJobBase):
 
     def do(self):
         tasks = ParseTask.objects.filter(service='HS')
+        users = []
+        now = datetime.now()
         for task in tasks:
             rn = services.ParseService("HS")
             data = rn.start(task.login, task.password, task.extra_data)
             task.result = data
             task.save()
+            d = datetime.strptime(data['date'], '%Y-%m-%d')
+            if (d - now).days < 5:
+                users.append(task.user)
+
+        for user in users:
+            send_user_notification(
+                user=user,
+                payload={
+                    'head': 'Сервис требует внимания',
+                    'body': 'На сервисе Hostens заканчиваются деньги!'
+                },
+                ttl=604800
+            )
 
 
 class FastvpsCron(CronJobBase):
@@ -75,6 +108,8 @@ class FastvpsCron(CronJobBase):
 
     def do(self):
         tasks = ParseTask.objects.filter(service='FV')
+        users = []
+        now = datetime.now()
         for task in tasks:
             rn = services.ParseService("FV")
             data = rn.start(task.login, task.password, task.extra_data)
@@ -84,3 +119,17 @@ class FastvpsCron(CronJobBase):
             task.extra_data = extra_data
             task.result = data
             task.save()
+            d = datetime.strptime(data['date'], '%Y-%m-%d')
+            if (d - now).days < 5:
+                users.append(task.user)
+
+        for user in users:
+
+            send_user_notification(
+                user=user,
+                payload={
+                    'head': 'Сервис требует внимания',
+                    'body': 'На сервисе FastVPS заканчиваются деньги!'
+                },
+                ttl=604800
+            )

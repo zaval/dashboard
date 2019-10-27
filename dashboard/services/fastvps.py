@@ -24,8 +24,6 @@ class FastVPS(BaseService):
                 }
             ).json()
 
-            print(resp)
-
             bearer = resp['token']
             refresh_token = resp['refresh_token']
 
