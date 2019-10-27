@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django_admin_hstore_widget',
     'django_cron',
+    'webpush'
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+WEBPUSH_SETTINGS = {
+   "VAPID_PUBLIC_KEY": "BGeTpXLYPKK1ivIVI8M0xuLpzbean2rLNPGAXwg7i7T3u5PkB2vadrhXSUgo2ym7iMHkE6JgmRSN07WM8m6vYdg",
+   "VAPID_PRIVATE_KEY": "bIKuUp3ugT-om6mMFjrOEPQ0NBcCEJu5uxSroiKQfq0",
+   "VAPID_ADMIN_EMAIL": "dzavalny+webpush@gmail.com"
+}
 
 
 # Internationalization

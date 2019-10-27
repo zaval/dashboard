@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.views.generic import TemplateView
+
 from panel.views import *
 
 urlpatterns = [
@@ -22,4 +24,6 @@ urlpatterns = [
     path('', index),
     path('accounts/login/', login_view),
     path('logout/', logout_view),
+    path('webpush/', include('webpush.urls')),
+    path('sw.js', TemplateView.as_view(template_name='panel/sw.js', content_type='application/x-javascript'))
 ]
