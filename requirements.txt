@@ -26,7 +26,7 @@ PySocks==1.7.0
 pytz==2019.1
 pywebpush==1.9.4
 requests==2.22.0
-rsa==4.0
+rsa==4.7
 six==1.12.0
 sqlparse==0.3.0
 uritemplate==3.0.0
